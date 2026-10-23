@@ -170,6 +170,7 @@ campusconnect/
 │   ├── 04_api_and_database_specification.md
 │   └── 05_ai_recommendation_and_testing.md
 ├── docker-compose.yml         # Containerized orchestration
+├── DESIGN.md                  # Google design.md visual identity & design token spec
 ├── PROGRESS.md                # Development milestone tracker
 └── README.md                  # Master documentation
 ```

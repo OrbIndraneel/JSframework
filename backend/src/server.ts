@@ -1,10 +1,18 @@
 import { app } from './app.js';
 import { config } from './config/index.js';
 import { connectDB } from './config/db.js';
+import { User } from './models/User.js';
 
 const startServer = async () => {
   try {
     await connectDB();
+
+    const userCount = await User.countDocuments();
+    if (userCount === 0) {
+      console.log('No users found in database. Auto-seeding initial demo data...');
+      const { seedDatabase } = await import('./scripts/seed.js');
+      await seedDatabase();
+    }
 
     const server = app.listen(config.PORT, () => {
       console.log(`=======================================================`);

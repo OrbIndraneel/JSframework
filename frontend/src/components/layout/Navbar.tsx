@@ -56,13 +56,12 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
+      className="glass-header"
       style={{
-        background: '#ffffff',
-        borderBottom: '1px solid var(--surface-border)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.05)',
+        boxShadow: 'var(--shadow-sm)',
       }}
     >
       <div
