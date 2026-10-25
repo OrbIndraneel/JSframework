@@ -14,11 +14,15 @@ export const connectDB = async (): Promise<string> => {
       console.log('Successfully connected to MongoDB database.');
       return uri;
     } catch (err: any) {
+      if (process.env.NODE_ENV === 'production') {
+        console.error('Fatal: Configured MongoDB connection failed in production:', err.message);
+        throw err;
+      }
       console.warn(`Configured MongoDB connection failed: ${err.message}. Falling back to in-memory instance for development/testing.`);
     }
   }
 
-  // Fallback to MongoMemoryServer for tests or when no remote DB is available
+  // Fallback to MongoMemoryServer for tests or standalone development
   try {
     if (!memoryServer) {
       memoryServer = await MongoMemoryServer.create();
