@@ -66,26 +66,26 @@ export const Sidebar: React.FC = () => {
   return (
     <aside
       style={{
-        width: '260px',
+        width: '240px',
         background: '#ffffff',
         borderRight: '1px solid var(--surface-border)',
-        minHeight: 'calc(100vh - 68px)',
-        padding: '1.5rem 1rem',
+        minHeight: 'calc(100vh - 64px)',
+        padding: '1.25rem 0.85rem',
         display: 'flex',
         flexDirection: 'column',
-        gap: '0.35rem',
+        gap: '0.25rem',
         flexShrink: 0,
       }}
       className="sidebar-aside"
     >
       <div
         style={{
-          padding: '0.5rem 0.75rem',
-          fontSize: '0.75rem',
-          fontWeight: 700,
+          padding: '0.4rem 0.65rem',
+          fontSize: '11px',
+          fontWeight: 600,
           textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-          color: 'var(--text-muted)',
+          letterSpacing: '0.04em',
+          color: 'var(--color-muted)',
           marginBottom: '0.25rem',
         }}
       >
@@ -102,13 +102,13 @@ export const Sidebar: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               gap: '0.75rem',
-              padding: '0.65rem 0.85rem',
-              borderRadius: 'var(--radius-sm)',
-              fontSize: '0.875rem',
+              padding: '0.55rem 0.75rem',
+              borderRadius: 'var(--rounded-input)',
+              fontSize: '14px',
               fontWeight: isActive ? 600 : 500,
-              color: isActive ? 'var(--primary-700)' : 'var(--text-secondary)',
-              backgroundColor: isActive ? 'var(--primary-50)' : 'transparent',
-              transition: 'all 0.15s ease',
+              color: isActive ? 'var(--color-primary)' : 'var(--color-muted)',
+              backgroundColor: isActive ? 'var(--color-primary-soft)' : 'transparent',
+              transition: 'background-color 0.12s ease, color 0.12s ease',
             })}
           >
             <Icon size={18} />

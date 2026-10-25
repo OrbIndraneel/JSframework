@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
 import { connectDB, disconnectDB } from '../config/db.js';
 import { User } from '../models/User.js';
@@ -393,7 +394,7 @@ export const seedDatabase = async () => {
     minCgpa: 7.0,
     targetGraduationYears: [2025],
     positions: 50,
-    deadline: new Date('2025-06-30'),
+    deadline: new Date(Date.now() + 60 * 24 * 3600 * 1000),
     status: 'active',
   });
 
@@ -412,9 +413,9 @@ export const seedDatabase = async () => {
     preferredSkills: ['Spring Boot', 'Kubernetes'],
     eligibleDepartments: ['CSE', 'IT'],
     minCgpa: 7.5,
-    targetGraduationYears: [2025],
+    targetGraduationYears: [2025, 2026],
     positions: 25,
-    deadline: new Date('2025-07-15'),
+    deadline: new Date(Date.now() + 75 * 24 * 3600 * 1000),
     status: 'active',
   });
 
@@ -433,9 +434,9 @@ export const seedDatabase = async () => {
     preferredSkills: ['Cloud', 'Distributed Systems'],
     eligibleDepartments: ['CSE', 'IT'],
     minCgpa: 8.0,
-    targetGraduationYears: [2025],
+    targetGraduationYears: [2025, 2026],
     positions: 15,
-    deadline: new Date('2025-08-01'),
+    deadline: new Date(Date.now() + 90 * 24 * 3600 * 1000),
     status: 'active',
   });
 
@@ -453,9 +454,9 @@ export const seedDatabase = async () => {
     preferredSkills: ['Docker', 'MongoDB'],
     eligibleDepartments: ['CSE', 'IT', 'ECE', 'AI & DS'],
     minCgpa: 6.5,
-    targetGraduationYears: [2025],
+    targetGraduationYears: [2025, 2026],
     positions: 8,
-    deadline: new Date('2025-06-15'),
+    deadline: new Date(Date.now() + 45 * 24 * 3600 * 1000),
     status: 'active',
   });
 

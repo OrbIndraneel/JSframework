@@ -56,12 +56,12 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className="glass-header"
       style={{
+        background: '#ffffff',
+        borderBottom: '1px solid var(--surface-border)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
-        boxShadow: 'var(--shadow-sm)',
       }}
     >
       <div
@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          height: '68px',
+          height: '64px',
         }}
       >
         {/* Brand Logo */}
@@ -81,27 +81,26 @@ export const Navbar: React.FC = () => {
             alignItems: 'center',
             gap: '0.65rem',
             fontWeight: 700,
-            fontSize: '1.25rem',
-            color: 'var(--navy-900)',
+            fontSize: '1.2rem',
+            color: 'var(--color-ink)',
           }}
         >
           <div
             style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '8px',
-              background: 'linear-gradient(135deg, #1d4ed8, #2563eb)',
+              width: '36px',
+              height: '36px',
+              borderRadius: 'var(--rounded-input)',
+              background: 'var(--color-primary)',
               color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 2px 4px rgba(37,99,235,0.25)',
             }}
           >
-            <GraduationCap size={22} />
+            <GraduationCap size={20} />
           </div>
-          <span style={{ letterSpacing: '-0.02em' }}>
-            Campus<span style={{ color: 'var(--primary-600)' }}>Connect</span>
+          <span style={{ letterSpacing: '-0.01em' }}>
+            Campus<span style={{ color: 'var(--color-primary)' }}>Connect</span>
           </span>
         </Link>
 

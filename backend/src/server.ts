@@ -14,7 +14,7 @@ const startServer = async () => {
       await seedDatabase();
     }
 
-    const server = app.listen(config.PORT, () => {
+    const server = app.listen(config.PORT, '0.0.0.0', () => {
       console.log(`=======================================================`);
       console.log(` CampusConnect Backend Service Live`);
       console.log(` URL: http://localhost:${config.PORT}`);

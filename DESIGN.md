@@ -1,206 +1,196 @@
 ---
 version: alpha
 name: CampusConnect
-description: Visual design system and design tokens for CampusConnect - College Placement & Alumni Portal
+description: A practical placement workspace for a college community. Built around the work students, recruiters, placement teams, and alumni actually need to do.
 colors:
-  primary: "#2563eb"
-  primary-hover: "#1d4ed8"
-  on-primary: "#ffffff"
-  secondary: "#475569"
-  secondary-bg: "#ffffff"
-  background: "#f8fafc"
-  surface: "#ffffff"
-  surface-muted: "#f1f5f9"
-  text: "#0f172a"
-  text-muted: "#64748b"
-  success: "#065f46"
-  success-bg: "#ecfdf5"
-  warning: "#92400e"
-  warning-bg: "#fffbeb"
-  danger: "#991b1b"
-  danger-bg: "#fef2f2"
-  info: "#1e40af"
-  info-bg: "#eff6ff"
+  primary: "#2457C5"
+  primary-hover: "#1D46A3"
+  primary-soft: "#EAF0FF"
+  on-primary: "#FFFFFF"
+  ink: "#172033"
+  muted: "#647084"
+  border: "#DCE2EA"
+  canvas: "#F6F8FB"
+  surface: "#FFFFFF"
+  success: "#18794E"
+  success-soft: "#E8F5EE"
+  warning: "#946200"
+  warning-soft: "#FFF4D6"
+  danger: "#B42318"
+  danger-soft: "#FDECEA"
 typography:
-  h1:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 32px
+  page-title:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 30px
     fontWeight: 700
-    lineHeight: 1.25
-  h2:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 24px
-    fontWeight: 700
+    lineHeight: 1.2
+  section-heading:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 20px
+    fontWeight: 600
     lineHeight: 1.3
-  h3:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 18px
+  card-heading:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 16px
     fontWeight: 600
     lineHeight: 1.4
-  body-md:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 14px
+  body:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 15px
     fontWeight: 400
     lineHeight: 1.5
-  body-sm:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 12px
+  metadata:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 13px
     fontWeight: 500
     lineHeight: 1.4
-  label-caps:
-    fontFamily: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
-    fontSize: 12px
-    fontWeight: 600
-    lineHeight: 1
+  kpi-number:
+    fontFamily: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+    fontSize: 28px
+    fontWeight: 700
+    lineHeight: 1.1
 spacing:
   xs: 4px
   sm: 8px
-  md: 16px
+  md: 12px
+  base: 16px
   lg: 24px
   xl: 32px
-  2xl: 48px
+  2xl: 40px
+  3xl: 48px
 rounded:
-  sm: 6px
-  md: 10px
-  lg: 14px
+  input: 8px
+  card: 10px
   full: 9999px
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
     textColor: "{colors.on-primary}"
-    rounded: "{rounded.sm}"
-    padding: 12px
+    rounded: "{rounded.input}"
+    height: 40px
   button-primary-hover:
     backgroundColor: "{colors.primary-hover}"
     textColor: "{colors.on-primary}"
   button-secondary:
-    backgroundColor: "{colors.secondary-bg}"
-    textColor: "{colors.secondary}"
-    rounded: "{rounded.sm}"
-    padding: 12px
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.input}"
+    height: 40px
+  nav-item-active:
+    backgroundColor: "{colors.primary-soft}"
+    textColor: "{colors.primary}"
   card:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.md}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.card}"
     padding: 24px
-  container-main:
-    backgroundColor: "{colors.background}"
-    textColor: "{colors.text}"
-    padding: 24px
-  table-header:
-    backgroundColor: "{colors.surface-muted}"
-    textColor: "{colors.secondary}"
-    padding: 12px
-  text-muted:
-    backgroundColor: "{colors.surface}"
-    textColor: "{colors.text-muted}"
+  app-shell:
+    backgroundColor: "{colors.canvas}"
+    textColor: "{colors.ink}"
   badge-success:
-    backgroundColor: "{colors.success-bg}"
+    backgroundColor: "{colors.success-soft}"
     textColor: "{colors.success}"
     rounded: "{rounded.full}"
     padding: 4px
   badge-warning:
-    backgroundColor: "{colors.warning-bg}"
+    backgroundColor: "{colors.warning-soft}"
     textColor: "{colors.warning}"
     rounded: "{rounded.full}"
     padding: 4px
   badge-danger:
-    backgroundColor: "{colors.danger-bg}"
+    backgroundColor: "{colors.danger-soft}"
     textColor: "{colors.danger}"
     rounded: "{rounded.full}"
     padding: 4px
-  badge-info:
-    backgroundColor: "{colors.info-bg}"
-    textColor: "{colors.info}"
-    rounded: "{rounded.full}"
-    padding: 4px
+  text-muted:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.muted}"
+  divider-label:
+    backgroundColor: "{colors.border}"
+    textColor: "{colors.ink}"
 ---
 
 ## Overview
 
-CampusConnect is a college placement, recruitment, and alumni networking portal designed for academic institutions, graduating students, corporate recruiters, and alumni mentors.
+CampusConnect brings placement activity into one dependable place: opportunities, applications, recruitment drives, outcomes, and alumni guidance.
 
-The visual identity embodies **Academic Professionalism and Clarity**. The user interface uses a crisp slate and royal blue aesthetic reminiscent of modern enterprise educational suites and institutional career centers. Clean cards, prominent metric badges, and clear visual hierarchy reduce cognitive overload for students reviewing job listings and placement officers managing bulk student workflows.
+The interface feels like a well-run university service — not a generic startup landing page and not an AI-generated admin template. It prioritizes clarity, useful information density, predictable navigation, and credible data presentation.
+
+### Principles
+- **Utility before spectacle**: Make the next action obvious; keep decoration secondary. Avoid glowing gradients, glassmorphism, giant rounded cards, and excessive pill-shaped controls.
+- **Specific, not generic**: Use language from campus recruitment — eligibility, drive, application status, shortlist, interview, offer, mentorship.
+- **Show real state**: Counts, charts, and status labels come from the API. Never invent activity or stock metrics to make a screen look busy.
+- **Accessible by default**: High text contrast, visible keyboard focus, clear field-level errors, and labels that never rely on color alone.
 
 ## Colors
 
-The CampusConnect color palette is engineered for high contrast, trustworthy institutional presence, and WCAG AA accessibility compliance across both dense data tables and executive dashboards.
+A calm, campus-oriented palette. Blue is the primary interaction color; green, amber, and red communicate state only.
 
-- **Primary (`#2563eb`):** Royal Blue (`--primary-600`), driving primary actions, active navigation items, and conversion funnels.
-- **Primary Hover (`#1d4ed8`):** Deepened Royal Blue (`--primary-700`) for tactile interaction feedback.
-- **On-Primary (`#ffffff`):** Pure white text for high contrast on primary buttons and badges.
-- **Secondary (`#475569`):** Slate grey (`--text-secondary`) for supporting labels, secondary buttons, table headers, and subheadings.
-- **Secondary Background (`#ffffff`):** Clean white backing for secondary controls.
-- **Background (`#f8fafc`):** Subtle cool off-white (`--surface-bg`) canvas that minimizes eye fatigue during extended usage.
-- **Surface (`#ffffff`):** Pure white container surfaces (`--surface-card`) providing crisp content separation.
-- **Surface Muted (`#f1f5f9`):** Soft grey (`--surface-muted`) for data-table headers and inactive tab strips.
-- **Text (`#0f172a`):** Deep navy ink (`--text-main`) providing strong typographic contrast.
-- **Text Muted (`#64748b`):** Balanced mid-slate (`--text-muted`) for metadata, timestamps, and helper descriptions.
-- **Success (`#065f46`) / Success BG (`#ecfdf5`):** Forest emerald accents for shortlisted candidates and verified statuses.
-- **Warning (`#92400e`) / Warning BG (`#fffbeb`):** Amber tone for pending approvals and deadline reminders.
-- **Danger (`#991b1b`) / Danger BG (`#fef2f2`):** Crimson for rejected applications and destructive actions.
-- **Info (`#1e40af`) / Info BG (`#eff6ff`):** Navy blue tone for informational callouts and round schedules.
+- **Primary (`#2457C5`):** Calm campus blue for primary actions, active tabs, and focused controls.
+- **Primary Hover (`#1D46A3`):** Darkened blue for tactile hover and active button states.
+- **Primary Soft (`#EAF0FF`):** Soft blue tint for active navigation backgrounds and subtle selections.
+- **On-Primary (`#FFFFFF`):** High-contrast pure white text for solid buttons and badges.
+- **Ink (`#172033`):** Deep charcoal navy for headers, table data, and primary reading text.
+- **Muted (`#647084`):** Supporting slate for labels, helper text, and timestamp metadata.
+- **Border (`#DCE2EA`):** Crisp neutral borders for cards, table dividers, and inputs.
+- **Canvas (`#F6F8FB`):** Calm off-white application background.
+- **Surface (`#FFFFFF`):** Pure white container surfaces for cards, panels, and tables.
+- **Success (`#18794E`) / Success Soft (`#E8F5EE`):** Forest green for selected, verified, and completed statuses.
+- **Warning (`#946200`) / Warning Soft (`#FFF4D6`):** Warm amber for pending actions and deadline warnings.
+- **Danger (`#B42318`) / Danger Soft (`#FDECEA`):** Crimson red for rejected applications, errors, and destructive actions.
 
 ## Typography
 
-The typography uses a native system font stack optimized for instantaneous rendering and cross-platform fidelity across macOS, Windows, and Linux.
+The typography uses `Inter` with system sans-serif fallback for maximum readability, tabular numerals for analytics, and comfortable line lengths.
 
-- **Headings (`h1`, `h2`, `h3`):** Semibold and bold weights provide authoritative hierarchy for page headers, profile banners, and analytics charts.
-- **Body (`body-md`, `body-sm`):** 14px regular body text for high readability within complex tables, candidate cards, and resume views.
-- **Labels (`label-caps`):** 12px semibold for badges, statuses, and metric cards.
+- **Page Title (`page-title`):** 28–32px, font-weight 700 for page headings.
+- **Section Heading (`section-heading`):** 18–22px, font-weight 600 for dashboard sections and card groupings.
+- **Card Heading (`card-heading`):** 14–16px, font-weight 600 for card headers and modal titles.
+- **Body (`body`):** 14–15px, font-weight 400 for standard content and table cells.
+- **Metadata (`metadata`):** 12–13px, font-weight 500 for timestamps, field labels, and badges.
+- **KPI Number (`kpi-number`):** 26–32px, font-weight 700 with tabular numerals for accurate data scanning.
 
 ## Layout
 
-CampusConnect utilizes a responsive 12-column fluid grid with maximum containment width:
-
-- **Desktop Containment:** Max-width 1280px container centered with `1.5rem` (`24px`) responsive horizontal padding.
-- **Navigation:** Persistent sidebar or top navigation bar fixed at 64px height with structured elevation.
-- **Card Spacing:** 16px to 24px rhythm separating stat widgets, application tracking feeds, and alumni directory cards.
-- **Grid Systems:** Standard `.grid-2`, `.grid-3`, and `.grid-4` layouts that collapse smoothly to 1 or 2 columns on tablet and mobile viewports.
+- **Authenticated Shell:** Fixed-width 240px left sidebar, persistent top bar with user context, and a contained main content container (max-width 1280px).
+- **Page Spacing:** Consistent 4px scale rhythm (`4, 8, 12, 16, 24, 32, 40, 48px`). Panel padding is 20–24px on desktop, 16px on mobile.
+- **Responsive Layout:** Clean CSS grids (`grid-2`, `grid-3`, `grid-4`) that collapse gracefully to 1 or 2 columns on mobile devices without clipping.
 
 ## Elevation & Depth
 
-Visual hierarchy is primarily communicated through subtle borders (`#e2e8f0`) and layered surface tones rather than heavy drop shadows:
+Visual hierarchy is conveyed through crisp borders (`#DCE2EA`) and tonal layer contrast (`#F6F8FB` canvas vs `#FFFFFF` surface) rather than heavy drop shadows:
 
-- **Surface Level:** Canvas `#f8fafc` hosts elevated `#ffffff` cards.
-- **Card Shadows:** Minimal ambient shadow (`0 1px 2px 0 rgb(0 0 0 / 0.05)`) with interactive elevation (`0 4px 6px -1px rgb(0 0 0 / 0.08)`) upon hover.
-- **Modal Depth:** Centered dialog backdrop with subtle overlay blur and z-index containment.
+- **Border-First Architecture:** Clean 1px solid dividers define panels, table cells, and navigation.
+- **Subtle Elevation:** Cards use minimal ambient shadows (`0 1px 3px rgba(23, 32, 51, 0.05)`) to cleanly separate from the canvas background.
 
 ## Shapes
 
-The interface employs consistent rounded boundaries for a polished, approachable software experience:
-
-- **Inputs & Buttons (`6px`):** Subtle rounding (`rounded.sm`) maintains an engineered, professional feel without being boxy.
-- **Cards & Containers (`10px`):** Moderate corner radius (`rounded.md`) softens information containers and data widgets.
-- **Status Badges & Avatars (`9999px`):** Full pill rounding (`rounded.full`) distinguishes status indicators and user profile chips.
+- **Inputs & Buttons (`8px`):** Precise 8px corner radius (`rounded.input`) for modern, professional controls.
+- **Cards & Panels (`10px`):** Structured 10px corner radius (`rounded.card`) to frame data density comfortably.
+- **Status Badges (`9999px`):** Pill-rounded status badges pairing semantic backgrounds with text labels and status icons.
 
 ## Components
 
-CampusConnect components are designed for clarity and fast data scanning:
-
 - **Buttons:**
-  - `button-primary`: Royal Blue with high contrast white text.
-  - `button-secondary`: Crisp white with slate border and text.
-- **Cards:**
-  - `card`: White surface with 10px rounded corners and 24px padding.
+  - `button-primary`: `#2457C5` background, `#FFFFFF` text, 40px height, 8px radius.
+  - `button-secondary`: `#FFFFFF` background with `#DCE2EA` border, `#172033` text, 40px height.
 - **Status Badges:**
-  - `badge-success`: Candidate placed / verified.
-  - `badge-warning`: Application pending / under review.
-  - `badge-danger`: Application rejected.
-  - `badge-info`: Test / interview scheduled.
+  - `badge-success`: `#E8F5EE` background, `#18794E` text.
+  - `badge-warning`: `#FFF4D6` background, `#946200` text.
+  - `badge-danger`: `#FDECEA` background, `#B42318` text.
 - **Data Tables:**
-  - `table-header`: Soft grey muted background with slate uppercase column labels.
+  - Crisp header with `#DCE2EA` bottom border, uppercase tracking, clear alignment, right-aligned numbers, and predictable row actions.
 
 ## Do's and Don'ts
 
 ### Do's
-- Do use `primary` (`#2563eb`) exclusively for primary call-to-actions (e.g., "Apply for Drive", "Export Report", "Submit Review").
-- Do maintain WCAG AA contrast (4.5:1 minimum) on all text and badge combinations.
-- Do keep card internal padding consistent at 24px (`padding: 24px`).
-- Do use semantic status badges (`badge-success`, `badge-warning`, `badge-danger`) consistently across student and recruiter portals.
+- Do use calm campus blue (`#2457C5`) for primary interactive controls.
+- Do accompany every status color with a visible text label and clear status state.
+- Do preserve real API data integrity — display real numbers and helpful empty states.
+- Do keep input heights consistently between 40px and 44px with 8px radius.
 
 ### Don'ts
-- Don't use saturated primary blue for full card backgrounds or table rows.
-- Don't mix mismatched border radiuses (e.g., 20px corners with 4px buttons in the same container).
-- Don't use light grey text on light grey backgrounds.
-- Don't hardcode arbitrary colors outside the tokens defined in `DESIGN.md`.
+- Don't use glowing gradients, neon glows, glassmorphism, or floating decorative elements.
+- Don't invent fake placement rates, mock statistics, or stock marketing testimonials.
+- Don't use emoji as interface icons; use Lucide icons.
+- Don't rely on color alone to communicate application status or verification.

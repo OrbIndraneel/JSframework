@@ -4,88 +4,90 @@ import {
   GraduationCap,
   Briefcase,
   Users,
-  Award,
-  Sparkles,
+  ShieldCheck,
   ArrowRight,
-  TrendingUp,
-  Building,
-  CheckCircle2,
+  MapPin,
+  Calendar,
+  Building2,
+  CheckCircle,
 } from 'lucide-react';
 import { apiClient } from '../../services/api.js';
+import { Job } from '../../types/index.js';
 
 export const LandingPage: React.FC = () => {
-  const [stats, setStats] = useState({
-    activeJobs: 4,
-    totalStudents: 4,
-    placedStudents: 1,
-    verifiedRecruiters: 4,
-    placementRate: 25,
-  });
+  const [recentJobs, setRecentJobs] = useState<Job[]>([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
 
   useEffect(() => {
-    // Fetch live platform metrics from placement analytics endpoint
+    // Fetch live opportunities from the API for genuine preview
     apiClient
-      .get('/placement/analytics')
+      .get('/students/jobs', { params: { limit: 3 } })
       .then((res) => {
-        if (res.data.data?.kpis) {
-          setStats(res.data.data.kpis);
+        if (res.data.data?.jobs) {
+          setRecentJobs(res.data.data.jobs);
         }
       })
       .catch(() => {
-        // Fallback default state preserved
+        setRecentJobs([]);
+      })
+      .finally(() => {
+        setLoadingJobs(false);
       });
   }, []);
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* 1. Hero Section (Design1.md: Concise headline, two clear CTAs, calm campus canvas) */}
       <section
         style={{
-          background: 'linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%)',
-          padding: '5rem 0 4rem 0',
-          borderBottom: '1px solid var(--surface-border)',
+          background: 'var(--color-canvas)',
+          padding: '4rem 0 3.5rem 0',
+          borderBottom: '1px solid var(--color-border)',
         }}
       >
-        <div className="container" style={{ textAlign: 'center', maxWidth: '880px' }}>
+        <div className="container" style={{ maxWidth: '840px', textAlign: 'center' }}>
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.35rem 0.9rem',
-              background: 'var(--primary-100)',
-              color: 'var(--primary-800)',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.85rem',
+              gap: '0.4rem',
+              padding: '0.3rem 0.75rem',
+              background: 'var(--color-primary-soft)',
+              color: 'var(--color-primary)',
+              borderRadius: 'var(--rounded-input)',
+              fontSize: '13px',
               fontWeight: 600,
-              marginBottom: '1.5rem',
+              marginBottom: '1.25rem',
+              border: '1px solid #bfdbfe',
             }}
           >
-            <Sparkles size={16} /> Campus Placement & Alumni Relations ERP 2025
+            University Placement & Alumni Workspace
           </div>
 
           <h1
             style={{
-              fontSize: '2.75rem',
-              fontWeight: 800,
-              color: 'var(--navy-900)',
-              letterSpacing: '-0.03em',
-              lineHeight: 1.2,
-              marginBottom: '1.25rem',
+              fontSize: '32px',
+              fontWeight: 700,
+              color: 'var(--color-ink)',
+              lineHeight: 1.25,
+              marginBottom: '1rem',
+              letterSpacing: '-0.02em',
             }}
           >
-            Empowering Campus Careers Through Intelligent Placement & Alumni Networking
+            Connecting campus talent with verified career opportunities.
           </h1>
 
           <p
             style={{
-              fontSize: '1.15rem',
-              color: 'var(--text-secondary)',
+              fontSize: '16px',
+              color: 'var(--color-muted)',
               lineHeight: 1.6,
-              marginBottom: '2.5rem',
+              marginBottom: '2rem',
+              maxWidth: '680px',
+              margin: '0 auto 2rem auto',
             }}
           >
-            CampusConnect bridges ambitious students, verified enterprise recruiters, college placement officers, and accomplished alumni into one transparent, AI-augmented academic platform.
+            CampusConnect brings academic placement drives, verified corporate recruitment, and graduate alumni mentorship into one transparent, dependable campus workspace.
           </p>
 
           <div
@@ -93,328 +95,273 @@ export const LandingPage: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: '0.75rem',
               flexWrap: 'wrap',
             }}
           >
-            <Link to="/register" className="btn btn-primary" style={{ padding: '0.75rem 1.75rem', fontSize: '1rem' }}>
-              Get Started Free <ArrowRight size={18} />
+            <Link to="/jobs" className="btn btn-primary" style={{ height: '42px', padding: '0 1.25rem' }}>
+              Find opportunities <ArrowRight size={16} />
             </Link>
-            <Link to="/jobs" className="btn btn-secondary" style={{ padding: '0.75rem 1.75rem', fontSize: '1rem' }}>
-              Explore Campus Openings
+            <Link to="/register" className="btn btn-secondary" style={{ height: '42px', padding: '0 1.25rem' }}>
+              Recruit talent
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Live Academic Placement Statistics */}
-      <section style={{ padding: '3.5rem 0', background: '#ffffff', borderBottom: '1px solid var(--surface-border)' }}>
+      {/* 2. Campus Recruitment Workflow Section */}
+      <section style={{ padding: '3.5rem 0', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
-          <div
-            style={{
-              textAlign: 'center',
-              marginBottom: '2rem',
-            }}
-          >
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--navy-900)' }}>
-              Live University Placement Milestones
+          <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 2.5rem auto' }}>
+            <h2 style={{ fontSize: '22px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.5rem' }}>
+              Built for the work campus stakeholders actually need to do
             </h2>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-              Data synchronized directly with live campus recruitment records.
+            <p style={{ color: 'var(--color-muted)', fontSize: '14px' }}>
+              Role-focused workflows designed for eligibility compliance, transparent review stages, and audited outcomes.
             </p>
           </div>
 
           <div className="grid-4">
-            <div className="stat-card">
-              <div className="stat-icon" style={{ background: '#dbeafe', color: '#1d4ed8' }}>
-                <TrendingUp size={24} />
-              </div>
-              <div>
-                <div className="stat-val">{stats.placementRate}%</div>
-                <div className="stat-label">Graduating Placement Rate</div>
-              </div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-icon" style={{ background: '#ecfdf5', color: '#047857' }}>
-                <Briefcase size={24} />
-              </div>
-              <div>
-                <div className="stat-val">{stats.activeJobs}</div>
-                <div className="stat-label">Active Campus Openings</div>
-              </div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-icon" style={{ background: '#eff6ff', color: '#2563eb' }}>
-                <Building size={24} />
-              </div>
-              <div>
-                <div className="stat-val">{stats.verifiedRecruiters}</div>
-                <div className="stat-label">Verified Hiring Partners</div>
-              </div>
-            </div>
-
-            <div className="stat-card">
-              <div className="stat-icon" style={{ background: '#fef3c7', color: '#b45309' }}>
-                <Users size={24} />
-              </div>
-              <div>
-                <div className="stat-val">{stats.placedStudents}</div>
-                <div className="stat-label">Placed Batch Candidates</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Ecosystem Pillars */}
-      <section style={{ padding: '4.5rem 0', backgroundColor: 'var(--surface-bg)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '650px', margin: '0 auto 3rem auto' }}>
-            <h2 style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--navy-900)', marginBottom: '0.5rem' }}>
-              Four Portals. One Integrated Network.
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
-              Engineered with dedicated workflows, strict role boundaries, and audit logging for every university stakeholder.
-            </p>
-          </div>
-
-          <div className="grid-4">
-            <div className="card card-hover">
+            <div className="card">
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
-                  background: 'var(--primary-100)',
-                  color: 'var(--primary-700)',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: 'var(--rounded-input)',
+                  background: 'var(--color-primary-soft)',
+                  color: 'var(--color-primary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '1.25rem',
+                  marginBottom: '1rem',
                 }}
               >
-                <GraduationCap size={22} />
+                <GraduationCap size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-900)', marginBottom: '0.5rem' }}>
-                Student Portal
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem' }}>
+                Students
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
-                Resume upload with AI parsing, eligibility-checked job applications, real-time status tracking, and personalized career skill gap analysis.
+              <p style={{ fontSize: '13px', color: 'var(--color-muted)', lineHeight: 1.55, marginBottom: '1rem' }}>
+                Verify department eligibility, apply to open drives, track review stages in real-time, and get actionable skill overlap feedback.
               </p>
-              <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600, fontSize: '0.85rem' }}>
-                Student Login &rarr;
+              <Link to="/jobs" style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '13px' }}>
+                Explore openings &rarr;
               </Link>
             </div>
 
-            <div className="card card-hover">
+            <div className="card">
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
-                  background: '#fef3c7',
-                  color: '#b45309',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: 'var(--rounded-input)',
+                  background: 'var(--color-warning-soft)',
+                  color: 'var(--color-warning)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '1.25rem',
+                  marginBottom: '1rem',
                 }}
               >
-                <Briefcase size={22} />
+                <Briefcase size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-900)', marginBottom: '0.5rem' }}>
-                Recruiter Portal
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem' }}>
+                Recruiters
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
-                Company verification, posting criteria-based jobs, evaluating candidate resumes, updating statuses, scheduling interviews, and exporting applicant rosters.
+              <p style={{ fontSize: '13px', color: 'var(--color-muted)', lineHeight: 1.55, marginBottom: '1rem' }}>
+                Publish criteria-bound openings, review candidate resumes, manage shortlisted pools, schedule rounds, and export rosters.
               </p>
-              <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600, fontSize: '0.85rem' }}>
-                Recruiter Login &rarr;
+              <Link to="/register" style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '13px' }}>
+                Post openings &rarr;
               </Link>
             </div>
 
-            <div className="card card-hover">
+            <div className="card">
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
-                  background: '#ecfdf5',
-                  color: '#047857',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: 'var(--rounded-input)',
+                  background: 'var(--color-success-soft)',
+                  color: 'var(--color-success)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '1.25rem',
+                  marginBottom: '1rem',
                 }}
               >
-                <Award size={22} />
+                <ShieldCheck size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-900)', marginBottom: '0.5rem' }}>
-                Placement Cell ERP
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem' }}>
+                Placement Cell
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
-                Annual recruitment drive management, recruiter & alumni account verification, real-time database analytics charts, and administrative audit logging.
+              <p style={{ fontSize: '13px', color: 'var(--color-muted)', lineHeight: 1.55, marginBottom: '1rem' }}>
+                Oversee campus recruitment schedules, verify partner credentials, monitor application volumes, and maintain audit-ready records.
               </p>
-              <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600, fontSize: '0.85rem' }}>
-                Placement Officer Login &rarr;
+              <Link to="/login" style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '13px' }}>
+                Cell dashboard &rarr;
               </Link>
             </div>
 
-            <div className="card card-hover">
+            <div className="card">
               <div
                 style={{
-                  width: '44px',
-                  height: '44px',
-                  borderRadius: '10px',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: 'var(--rounded-input)',
                   background: '#f3e8ff',
                   color: '#7e22ce',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '1.25rem',
+                  marginBottom: '1rem',
                 }}
               >
-                <Users size={22} />
+                <Users size={20} />
               </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-900)', marginBottom: '0.5rem' }}>
-                Alumni Hub
+              <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.4rem' }}>
+                Alumni Network
               </h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1rem' }}>
-                Graduate career profiles, structured 1-on-1 mentorship requests from juniors, and hosting webinars and placement prep masterclasses.
+              <p style={{ fontSize: '13px', color: 'var(--color-muted)', lineHeight: 1.55, marginBottom: '1rem' }}>
+                Share domain expertise with graduating batches, review student inquiries, and host career preparation workshops.
               </p>
-              <Link to="/login" style={{ color: 'var(--primary-600)', fontWeight: 600, fontSize: '0.85rem' }}>
-                Alumni Login &rarr;
+              <Link to="/alumni/directory" style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '13px' }}>
+                View directory &rarr;
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* AI Recommendation Engine Highlight */}
-      <section style={{ padding: '4.5rem 0', background: '#ffffff', borderBottom: '1px solid var(--surface-border)' }}>
+      {/* 3. Current Campus Opportunities Preview (Populated directly from API) */}
+      <section style={{ padding: '3.5rem 0', background: 'var(--color-canvas)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container">
-          <div
-            style={{
-              background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',
-              borderRadius: 'var(--radius-lg)',
-              padding: '3.5rem 2.5rem',
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '2rem',
-              flexWrap: 'wrap',
-            }}
-          >
-            <div style={{ maxWidth: '600px' }}>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.25rem 0.75rem',
-                  borderRadius: '9999px',
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  marginBottom: '1rem',
-                }}
-              >
-                <Sparkles size={14} /> Python FastAPI & Scikit-Learn Microservice
-              </div>
-              <h2 style={{ fontSize: '2rem', fontWeight: 700, lineHeight: 1.25, marginBottom: '1rem' }}>
-                Transparent, Explainable Career Recommendations
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.75rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div>
+              <h2 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.25rem' }}>
+                Current Campus Recruitment Openings
               </h2>
-              <p style={{ color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                CampusConnect matches candidate skill sets and resumes against enterprise job requirements using semantic TF-IDF cosine similarity, weighted skill overlap, and academic eligibility enforcement.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
-                  <CheckCircle2 size={18} color="#4ade80" /> Strict eligibility verification (CGPA, Branch, Grad Year)
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
-                  <CheckCircle2 size={18} color="#4ade80" /> Actionable skill gap analysis highlighting missing prerequisites
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
-                  <CheckCircle2 size={18} color="#4ade80" /> Automated PDF and DOCX resume parsing with field extraction
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.08)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                borderRadius: 'var(--radius-md)',
-                padding: '2rem',
-                minWidth: '280px',
-                textAlign: 'center',
-              }}
-            >
-              <div style={{ fontSize: '3rem', fontWeight: 800, color: '#60a5fa' }}>92.4%</div>
-              <div style={{ fontWeight: 600, fontSize: '1rem', marginBottom: '0.5rem' }}>Sample Match Score</div>
-              <p style={{ fontSize: '0.8rem', color: '#94a3b8', lineHeight: 1.5 }}>
-                Evaluated against Microsoft SDE-1 requirements: Python, React, Algorithms.
+              <p style={{ color: 'var(--color-muted)', fontSize: '13px' }}>
+                Verified campus opportunities actively accepting applications.
               </p>
             </div>
+            <Link to="/jobs" className="btn btn-secondary btn-sm">
+              View all openings &rarr;
+            </Link>
           </div>
+
+          {loadingJobs ? (
+            <div className="card" style={{ textAlign: 'center', padding: '2rem', color: 'var(--color-muted)', fontSize: '14px' }}>
+              Loading active campus opportunities...
+            </div>
+          ) : recentJobs.length > 0 ? (
+            <div className="grid-3">
+              {recentJobs.map((job) => (
+                <div key={job._id} className="card card-hover" style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                    <span className="badge badge-info">{job.jobType.replace('_', ' ')}</span>
+                    <span style={{ fontSize: '12px', color: 'var(--color-muted)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <Calendar size={13} /> {new Date(job.deadline).toLocaleDateString()}
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: '16px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.35rem' }}>
+                    {job.title}
+                  </h3>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '13px', color: 'var(--color-muted)', marginBottom: '0.85rem' }}>
+                    <Building2 size={14} />
+                    <span>{typeof job.company === 'object' && job.company?.name ? job.company.name : 'Verified Campus Partner'}</span>
+                    <span>&bull;</span>
+                    <MapPin size={14} />
+                    <span>{job.location}</span>
+                  </div>
+
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.25rem' }}>
+                    {(job.requiredSkills || []).slice(0, 3).map((skill: string, i: number) => (
+                      <span
+                        key={i}
+                        style={{
+                          background: 'var(--color-canvas)',
+                          border: '1px solid var(--color-border)',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontSize: '11px',
+                          color: 'var(--color-ink)',
+                        }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                    {(job.requiredSkills || []).length > 3 && (
+                      <span style={{ fontSize: '11px', color: 'var(--color-muted)', alignSelf: 'center' }}>
+                        +{(job.requiredSkills || []).length - 3} more
+                      </span>
+                    )}
+                  </div>
+
+                  <div style={{ marginTop: 'auto', paddingTop: '0.85rem', borderTop: '1px solid var(--color-border)' }}>
+                    <Link to={`/jobs/${job._id}`} className="btn btn-outline-primary btn-sm" style={{ width: '100%' }}>
+                      View eligibility & apply
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="card" style={{ textAlign: 'center', padding: '2.5rem' }}>
+              <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.25rem' }}>
+                No active openings currently open
+              </div>
+              <p style={{ color: 'var(--color-muted)', fontSize: '13px' }}>
+                When corporate recruiters publish recruitment drives, they will appear directly here.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Academic Testimonials */}
-      <section style={{ padding: '4rem 0', backgroundColor: 'var(--surface-bg)' }}>
+      {/* 4. Placement Coordination & Mentorship Support */}
+      <section style={{ padding: '3.5rem 0', background: 'var(--color-surface)' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-            <h2 style={{ fontSize: '1.75rem', fontWeight: 700, color: 'var(--navy-900)' }}>
-              Voices from the University Ecosystem
-            </h2>
-          </div>
-
-          <div className="grid-3">
-            <div className="card">
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-                &ldquo;CampusConnect streamlined our entire placement season. We tracked our application funnel, scheduled interviews, and had transparent insight into our placement metrics.&rdquo;
+          <div className="grid-2" style={{ alignItems: 'center', gap: '2.5rem' }}>
+            <div>
+              <h2 style={{ fontSize: '22px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.75rem' }}>
+                Clear coordination across every placement stage
+              </h2>
+              <p style={{ color: 'var(--color-muted)', fontSize: '14px', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                CampusConnect eliminates communication delays between campus placement offices, company recruiters, and student applicants.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#bfdbfe', color: '#1e40af', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
-                  RS
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '14px', color: 'var(--color-ink)' }}>
+                  <CheckCircle size={18} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Eligibility enforcement:</strong> Automatically verifies academic criteria (CGPA, Branch, Graduation Year) before allowing drive submission.</span>
                 </div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>Dr. Rajesh Sharma</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Head of Placement Cell, IIITE</div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '14px', color: 'var(--color-ink)' }}>
+                  <CheckCircle size={18} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Explicit application status:</strong> Tracks stages clearly from Applied and Under Review to Shortlisted, Interview, and Offer.</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '14px', color: 'var(--color-ink)' }}>
+                  <CheckCircle size={18} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span><strong>Alumni guidance:</strong> Direct mentorship requests connecting students with verified alumni working across top enterprises.</span>
                 </div>
               </div>
             </div>
 
-            <div className="card">
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-                &ldquo;The AI skill-gap breakdown showed me exactly what technologies I was missing for the cloud engineering role. After learning Docker, I got selected at Microsoft India!&rdquo;
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#bbf7d0', color: '#166534', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
-                  AV
-                </div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>Ananya Verma</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Selected at Microsoft (Batch 2025)</div>
-                </div>
+            <div className="card" style={{ background: 'var(--color-canvas)', border: '1px solid var(--color-border)' }}>
+              <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--color-ink)', marginBottom: '0.75rem' }}>
+                Ready to participate in upcoming campus drives?
               </div>
-            </div>
-
-            <div className="card">
-              <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', fontStyle: 'italic', marginBottom: '1.25rem', lineHeight: 1.6 }}>
-                &ldquo;As an alumnus at Google, I can easily schedule mock system design interviews with graduating juniors through the mentorship request workflow.&rdquo;
+              <p style={{ fontSize: '13px', color: 'var(--color-muted)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                Sign in with your university student email or corporate recruiter account to access active placement drives.
               </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#fed7aa', color: '#9a3412', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
-                  AS
-                </div>
-                <div>
-                  <div style={{ fontWeight: 600, fontSize: '0.85rem' }}>Amit Saxena</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Senior SWE at Google (Alumni 2021)</div>
-                </div>
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <Link to="/login" className="btn btn-primary">
+                  Sign in to portal
+                </Link>
+                <Link to="/register" className="btn btn-secondary">
+                  Create new account
+                </Link>
               </div>
             </div>
           </div>
